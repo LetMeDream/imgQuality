@@ -15,6 +15,7 @@ const AvatarUpload = (props) => {
     setImg(newImage)
   }
   const handleOnChange = (e) => {
+    console.log(img)
     const newImage = e.target.files[0]
     console.log(newImage)
     if(newImage) {
@@ -38,7 +39,9 @@ const AvatarUpload = (props) => {
       />
 
 
-      <label htmlFor='imgUpload' className='flex cursor-pointer px-4 py-2 caret-transparent items-center gap-2 h-full w-full transition-all border-transparent outline-none rounded-md bg-gray-400 hover:bg-gray-300 hover:outline-none hover:border-transparent focus:outline-none'>
+      <label htmlFor='imgUpload' className='flex cursor-pointer px-4 py-2 caret-transparent items-center gap-2 h-full w-full transition-all border-transparent outline-none rounded-md bg-gray-400 hover:bg-gray-300 hover:outline-none hover:border-transparent focus:outline-none'
+      
+      >
         { img ? <AiFillDelete /> : <AiFillFileAdd /> }
         { img ? 'Uploaded' : 'Upload' }
       </label>

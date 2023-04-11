@@ -21,7 +21,7 @@ const Cloudinary = () => {
     const formData = new FormData()
     formData.append('file', file)
     formData.append('upload_preset', 'let_preset')
-    formData.append('quality_analysis', true)
+    /* formData.append('quality_analysis', true) */
     let data = ''
     await Axios.post('https://api.cloudinary.com/v1_1/dadlfo5yu/image/upload', formData).then(
       response => {
