@@ -46,7 +46,6 @@ const Cloudinary = () => {
         Cloudinary
         <AvatarUpload imageUpload={handleImg} image={imgUpload.image} />  
       </div>
-
       <button type='submit' onClick={ (e) => { handleSubmit(e) } }>Submit</button>
     </div>
   )
