@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import AvatarUpload from './AvatarUpload'
+import ImgUpload from './ImgUpload'
 import Axios from 'axios'
 
 const Cloudinary = () => {
@@ -43,7 +43,7 @@ const Cloudinary = () => {
     <div>
       <div className='flex flex-col justify-center gap-4'>
         Cloudinary
-        <AvatarUpload imageUpload={handleImg} image={imgUpload.image} />
+        <ImgUpload imageUpload={handleImg} image={imgUpload.image} />
       </div>
       <button type='submit' onClick={(e) => { handleSubmit(e) }}>Submit</button>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { AiFillDelete, AiFillFileAdd } from 'react-icons/ai'
 
-const AvatarUpload = (props) => {
+const ImgUpload = (props) => {
   const [img, setImg] = useState('')
   const inputFileRef = useRef(null)
   const cleanUp = () => {
@@ -48,4 +48,4 @@ const AvatarUpload = (props) => {
   )
 }
 
-export default AvatarUpload
+export default ImgUpload
