@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react'
 import { AiFillDelete, AiFillFileAdd } from 'react-icons/ai'
 
-const ImgUpload = (props) => {
+const ImgUploader = (props) => {
   const [img, setImg] = useState('')
   const inputFileRef = useRef(null)
   const cleanUp = () => {
-    URL.revokeObjectURL(img && props.image)
+    URL.revokeObjectURL(img)
     /* inputFileRef.current.value = null; */
   }
   const setImage = (newImage) => {
@@ -13,9 +13,9 @@ const ImgUpload = (props) => {
     setImg(newImage)
   }
   const handleOnChange = (e) => {
-    console.log(img)
+    // console.log(img)
     const newImage = e.target.files[0]
-    console.log(newImage)
+    // console.log(newImage)
     if (newImage) {
       setImage(URL.createObjectURL(newImage))
     }
@@ -23,8 +23,8 @@ const ImgUpload = (props) => {
   }
 
   return (
-    <div>
-      <img className='w-[200px] m-auto mb-5' src={img} alt='No image yet' />
+    <div className=''>
+      <img className='w-[300px] m-auto mb-5' src={img} alt='No image yet' />
       <input
         type='file'
         accept='image/*'
@@ -48,4 +48,4 @@ const ImgUpload = (props) => {
   )
 }
 
-export default ImgUpload
+export default ImgUploader

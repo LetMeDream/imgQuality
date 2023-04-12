@@ -1,21 +1,15 @@
 import React, { useState } from 'react'
-import ImgUpload from './ImgUpload'
+import ImgUploader from './ImgUploader'
 import Axios from 'axios'
 
 const Cloudinary = () => {
-  const [logo, setLogo] = useState('')
-  const [imgUpload, setImgUpload] = useState({})
-  const [, setImg] = useState({})
+  const [imgFile, setImgFile] = useState('')
+  const [focusScore, setFocusScore] = useState(null)
+  const [fileName, setFileName] = useState('')
 
   const handleImg = (e) => {
-    console.log(e)
     if (e.target.files[0]) {
-      setImg({
-        src: URL.createObjectURL(e.target.files[0]),
-        alt: e.target.files[0].name
-      })
-      console.log(e.target.files)
-      setLogo(e.target.files[0])
+      setImgFile(e.target.files[0])
     }
   }
 
@@ -23,29 +17,37 @@ const Cloudinary = () => {
     const formData = new FormData()
     formData.set('file', file)
     formData.set('upload_preset', 'let_preset')
-    /* formData.set('quality_analysis', true) */
-    let data = ''
+    // let data = ''
     await Axios.post('https://api.cloudinary.com/v1_1/dadlfo5yu/image/upload', formData).then(
       response => {
-        console.log(response)
-        data = response.data.secure_url
+        console.log(response.data)
+        setFocusScore(response.data.quality_analysis.focus)
+        setFileName(response.data.public_id.substring(0, response.data.public_id.lastIndexOf('_')))
+        // data = response.data.secure_url
       }
     ).catch(err => console.log(err.response.data.error))
-    return data
+    // return data
   }
 
-  const handleSubmit = async (e) => {
-    setImgUpload({ ...imgUpload, image: logo })
-    await profileUpload(logo)
+  const handleSubmit = async () => {
+    await profileUpload(imgFile)
   }
 
   return (
     <div>
       <div className='flex flex-col justify-center gap-4'>
-        Cloudinary
-        <ImgUpload imageUpload={handleImg} image={imgUpload.image} />
+        Custom Cloudinary
+        <ImgUploader imageUpload={handleImg} />
       </div>
-      <button type='submit' onClick={(e) => { handleSubmit(e) }}>Submit</button>
+      <div>
+        <h2>
+          File name: {fileName}
+        </h2>
+        <h2>
+          Focus score: <strong>{focusScore?.toFixed(3) ?? 'n/a'}</strong>
+        </h2>
+      </div>
+      <button type='submit' onClick={handleSubmit}>Submit</button>
     </div>
   )
 }
