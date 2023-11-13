@@ -5,7 +5,9 @@ import InputVideoRTC from './components/InputVideoRTC'
 
 function App () {
   return (
-    <InputVideoRTC />
+    <>
+      <InputVideoRTC />
+    </>
   )
 }
 
